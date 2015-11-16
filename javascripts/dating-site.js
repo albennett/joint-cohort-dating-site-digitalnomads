@@ -14,8 +14,8 @@ require.config({
 });
 
 require(
-  ["dependencies"], 
-  function(_$_) {
+  ["dependencies", "login"], 
+  function(_$_, login) {
 
     /*
       You can choose to use the REST methods to interact with
