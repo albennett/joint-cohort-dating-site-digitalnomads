@@ -26,7 +26,7 @@ define(function(require) {
 			    }
 
 			    if (userExists === false) {
-			    	usersFirebase.add({uid:authdata.uid});
+			    	usersFirebase.push({uid:authData.uid});
 			    }
 			    window.location.assign("home.html");
 			  }
