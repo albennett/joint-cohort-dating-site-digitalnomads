@@ -1,0 +1,47 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Digital Nomads</title>
+
+  <link rel="stylesheet" type="text/css" href="lib/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-default">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nomad-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="nomad-navbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
+          <li><a href="nomads.html">Nomads</a></li>
+          <li><a href="matches.html">Matches</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </nav>
+
+    <div id="content">
+      <!-- Handlebars content goes here -->
+    </div>
+  
+  </div><!-- /.container-fluid -->
+
+  <script data-main="javascripts/dating-site" src="lib/bower_components/requirejs/require.js"></script>
+</body>
+</html>
