@@ -6,6 +6,18 @@ define(function(require) {
 //If your user does not have an existing session, you can prompt the user 
 //to login and then invoke the GitHub login popup
 	  var ref = new Firebase("https://digitalnomads.firebaseio.com/");
+
+	  function getLogIn() {
+	  	var user = $('#nameInput').val();
+		var text = $('#messageInput').val();
+
+		var namepassword = {
+			email: user,
+			password: text
+		};
+	  }
+
+//github authentication
 	$("#github-image").on("click", function(){
 		console.log("doingsomething");
 		var authData = ref.getAuth();
@@ -24,7 +36,6 @@ define(function(require) {
 			    		break;
 			    	}
 			    }
-
 			    if (userExists === false) {
 			    	usersFirebase.push({uid:authData.uid});
 			    }
@@ -47,39 +58,25 @@ define(function(require) {
     	console.log("doingsomething");
 		var authData = ref.getAuth();
     	  
-    	  var user = $('#nameInput').val();
-          var text = $('#messageInput').val();
+    	  getLogIn();
           
-          var namepassword = {
-          	email: user,
-          	password: text
-          };
-          
-
-          $('#messageInput').val('');
 			ref.createUser(
-				namepassword, function(error, userData) {
-			  if (error) {
-			    console.log("Error creating user:", error);
-			  } else {
-			    console.log("Successfully created user account with uid:", userData.uid);
-			  }
-			
-			});
+				namepassword, 
+				function(error, userData) {
+				  if (error) {
+				    console.log("Error creating user:", error);
+				  } else {
+				    console.log("Successfully created user account with uid:", userData.uid);
+				  }
+				
+				});
 		   });
 
 
 	//log in
 		$("#login-button").on("click", function(){
 
-
-			var user = $('#nameInput').val();
-			var text = $('#messageInput').val();
-
-			var namepassword = {
-				email: user,
-				password: text
-			};
+			getLogIn();
 
 			ref.authWithPassword(
 			  namepassword,
