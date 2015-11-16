@@ -18,16 +18,17 @@ define(function(require) {
 			    uid.setUid(authData.uid);
 			    var usersFirebase = ref.child("users");
 			    var userExists = false;
-			    for (var key in usersFirebase) {
-			    	if (usersFirebase[key].uid === authData.uid) {
-			    		userExists = true;
-			    		break;
-			    	}
-			    }
-			    if (userExists === false) {
-			    	usersFirebase.push({uid:authData.uid});
-			    }
-			    window.location.assign("home.html");
+			    usersFirebase.once("value", function(dataSnapshot) {
+			    	dataSnapshot.forEach(function(childSnapshot) {
+				    	if (childSnapshot.val().uid === authData.uid) {
+				    		userExists = true;
+				    	}
+			    	});
+				    if (userExists === false) {
+				    	usersFirebase.push({uid:authData.uid});
+				    }
+				    window.location.assign("home.html");
+			    });
 			  }
 			},
 			  { //session will expire upon browser shutdown
