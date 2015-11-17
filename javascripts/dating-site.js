@@ -14,38 +14,53 @@ require.config({
 });
 
 require(
-  ["dependencies", "login", 'hbs!../templates/nomads'], 
-  function(_$_, login, nomadTemplate) {
+["dependencies", "login", 'hbs!../templates/nomads', "hbs!../templates/candidates"], 
+function(_$_, login, nomadTemplate, template) {
 
 // nomad sites are working
-      var ref = new Firebase("https://digitalnomads.firebaseio.com/");
-      var users = ref.child("users");
+    var ref = new Firebase("https://digitalnomads.firebaseio.com/");
+    var users = ref.child("users");
 
     $("#nomads-site").on("click", function(){
       console.log("working");
       // var usersFirebase = ref.child.("users");
       users.on("value", function(snapshot) {
 
-        var users = snapshot.val();
-             var usersArray = [];
-              for (var key in users) {
-                 usersArray[usersArray.length] = users[key];
-              }  console.log("array", usersArray);
+        var usersValue = snapshot.val();
+        var usersArray = [];
+        for (var key in usersValue) {
+           usersArray[usersArray.length] = usersValue[key];
+        }  console.log("array", usersArray);
         // console.log("dataSnapshot.val()", dataSnapshot.val());
          $("#content").html(nomadTemplate(usersArray));
       });
     });
 
     $("#content").on("click", ".nomadclass", function() {
+      var _this = this;
       users.once("value", function(dataSnapshot) {
         dataSnapshot.forEach(function(childSnapshot) {
           var user = childSnapshot.val();
-          if (user.uid === $(this).find("h3").attr("id")) {
+          if (user.uid === $(_this).find("h3").attr("id")) {
             $("#content").html(template(user));
           }
         });
       });
     });
+
+console.log("where we at", window.location.pathname);
+  if (window.location.pathname === "/home.html") {
+    var authData = ref.getAuth();
+    console.log("testing");
+    users.once("value", function(dataSnapshot) {
+        dataSnapshot.forEach(function(childSnapshot) {
+          var user = childSnapshot.val();
+          if (user.uid === authData.uid) {
+            $("#content").html(template(user));
+          }
+        });
+      });
+    }
 
 
   });

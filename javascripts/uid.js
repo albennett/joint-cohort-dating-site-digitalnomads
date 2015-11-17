@@ -1,7 +1,5 @@
 define(function(require) {
   var uid = null;
-  var profileImageUrl = null;
-  var displayName = null;
   
   return {
     getUid: function() {
@@ -10,10 +8,5 @@ define(function(require) {
     setUid: function(newId) {
       uid = newId;
     }
-
-
   };
 });
-
-
-

@@ -5,10 +5,7 @@ define(function(require) {
   
 //If your user does not have an existing session, you can prompt the user 
 //to login and then invoke the GitHub login popup
-
   var ref = new Firebase("https://digitalnomads.firebaseio.com/");
-
-
 //github authentication
 	$("#github-image").on("click", function(){
 		console.log("doingsomething");
@@ -20,7 +17,6 @@ define(function(require) {
 			  } else {
 			    console.log("Authenticated successfully with payload:", authData);
 			    uid.setUid(authData.uid);
-			 
 
 			    var usersFirebase = ref.child("users");
 			    var userExists = false;
@@ -33,9 +29,11 @@ define(function(require) {
 			    	});
 				    if (userExists === false) {
 				    	usersFirebase.push({
-			    		uid: authData.uid,
-			    		image: authData.github.profileImageURL,
-			    		displayName: authData.github.displayName});
+
+				    		uid: authData.uid,
+				    		image: authData.github.profileImageURL,
+				    		displayName: authData.github.displayName
+				    	});
 				    }
 				    window.location.assign("home.html");
 			    });
@@ -49,7 +47,6 @@ define(function(require) {
 			uid.setUid(authData.uid);
 			window.location.assign("home.html");
 		}
-
 
   });
 });

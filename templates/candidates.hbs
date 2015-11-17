@@ -1,4 +1,7 @@
-{{#each matches}}
-  <h3>{{ name }}</h3>
-  <section>{{ bio }}</section>
-{{/each}}
+<div class="row">
+  <h2 id="{{uid}}" class="col-sm-12">{{ displayName }}</h2>
+</div>
+<div class="row">
+  <img class="col-md-3" src="{{ image }}" alt="user image">
+  <p class="col-md-9">{{ bio }}</p>
+</div>
