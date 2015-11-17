@@ -34,9 +34,9 @@ require(
    
     // var usersFirebase = ref.child.("users");
     var users = ref.child("users");
-    users.on("value", function(snapshot) {
+      users.on("value", function(snapshot) {
 
-      var users = snapshot.val();
+     var users = snapshot.val();
            var usersArray = [];
             for (var key in users) {
                usersArray[usersArray.length] = users[key];
@@ -45,6 +45,6 @@ require(
 
       // console.log("dataSnapshot.val()", dataSnapshot.val());
        $("#content").html(nomadTemplate(usersArray));
-});
+      });
     });
   });
