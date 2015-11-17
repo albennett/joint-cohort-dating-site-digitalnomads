@@ -14,8 +14,9 @@ require.config({
 });
 
 require(
-  ["dependencies", "login"], 
-  function(_$_, login) {
+  ["dependencies", "login","favorites"], 
+  function(_$_, login,fav) {
+
 
     /*
       You can choose to use the REST methods to interact with
@@ -25,6 +26,10 @@ require(
       If you choose the former, I created two boilerplate modules
       named `potential-mates.js`, and `add-favorite.js`.
      */
+
+     $(".favorites").on("click", function() {
+      fav();
+     })
     
   }
 );
