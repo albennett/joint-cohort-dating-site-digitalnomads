@@ -35,4 +35,12 @@ h1 {
 nav {
   background-color: teal; }
 
+.submit {
+  background-color: purple;
+  color: white; }
+
+.bio, .destination {
+  background-color: purple;
+  color: white; }
+
 /*# sourceMappingURL=main.css.map */

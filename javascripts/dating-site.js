@@ -14,8 +14,18 @@ require.config({
 });
 
 require(
-["dependencies", "login", 'hbs!../templates/nomads', "hbs!../templates/candidates", "favorites"], 
-function(_$_, login, nomadTemplate, template, fav) {
+["dependencies", "login", 'hbs!../templates/nomads', "hbs!../templates/candidates", "favorites", "hbs!../templates/profileInputFields"], 
+function(_$_, login, nomadTemplate, template, fav, profileInputFields) {
+
+
+    
+$('#content').on('click','.submit',function(){
+   console.log('test some special magick');
+        var bio = $(".bio").val();
+        var destination = $(".destination").val();
+        console.log("bio" + bio);
+});    
+
 
 // nomad sites are working
     var ref = new Firebase("https://digitalnomads.firebaseio.com/");
@@ -57,7 +67,7 @@ function(_$_, login, nomadTemplate, template, fav) {
         dataSnapshot.forEach(function(childSnapshot) {
           var user = childSnapshot.val();
           if (user.uid === authData.uid) {
-            $("#content").html(template(user));
+            $("#content").html(profileInputFields(user));
           }
         });
       });

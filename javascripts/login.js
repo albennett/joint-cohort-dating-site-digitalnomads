@@ -2,6 +2,7 @@ define(function(require) {
   var firebase = require("firebase");
   var $ = require("jquery");
   var uid = require("uid");
+  var profileInputFields = require("profileInputFields");
   
 //If your user does not have an existing session, you can prompt the user 
 //to login and then invoke the GitHub login popup
@@ -37,7 +38,6 @@ define(function(require) {
 				    }
 				    window.location.assign("home.html");
 			    });
-
 			  }
 			},{ //session will expire upon browser shutdown
 			  remember: "sessionOnly",
@@ -46,8 +46,9 @@ define(function(require) {
 		} else {
 			uid.setUid(authData.uid);
 			window.location.assign("home.html");
+			profileInputFields.profileInputDisplay();
+			console.log("hey");
 		}
 
   });
 });
-
