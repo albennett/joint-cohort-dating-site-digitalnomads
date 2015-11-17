@@ -14,18 +14,21 @@ require.config({
 });
 
 require(
-["dependencies", "login", 'hbs!../templates/nomads', "hbs!../templates/candidates"], 
-function(_$_, login, nomadTemplate, template) {
+["dependencies", "login", 'hbs!../templates/nomads', "hbs!../templates/candidates", "favorites"], 
+function(_$_, login, nomadTemplate, template, fav) {
 
 // nomad sites are working
     var ref = new Firebase("https://digitalnomads.firebaseio.com/");
     var users = ref.child("users");
 
+     $(".favorites").ready(function() {
+      fav();
+     });
+
     $("#nomads-site").on("click", function(){
       console.log("working");
       // var usersFirebase = ref.child.("users");
       users.on("value", function(snapshot) {
-
         var usersValue = snapshot.val();
         var usersArray = [];
         for (var key in usersValue) {
@@ -48,10 +51,8 @@ function(_$_, login, nomadTemplate, template) {
       });
     });
 
-console.log("where we at", window.location.pathname);
   if (window.location.pathname === "/home.html") {
     var authData = ref.getAuth();
-    console.log("testing");
     users.once("value", function(dataSnapshot) {
         dataSnapshot.forEach(function(childSnapshot) {
           var user = childSnapshot.val();
@@ -61,6 +62,5 @@ console.log("where we at", window.location.pathname);
         });
       });
     }
-
 
   });

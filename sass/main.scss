@@ -4,8 +4,15 @@ body {
 
 h1 {
   text-align: center;
-  color: #f7736a;
+  color: purple;
+  //color: #f7736a;
 }
+
+.fav_photo {
+  width: 100px;
+  height: 100px;
+}
+
 
 #github-image {
 	text-align: center;
@@ -39,3 +46,4 @@ h1 {
 nav {
 	background-color: teal;
 }
+
