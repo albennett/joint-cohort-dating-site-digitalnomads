@@ -28,6 +28,9 @@ define(function(require) {
 			  } else {
 			    console.log("Authenticated successfully with payload:", authData);
 			    uid.setUid(authData.uid);
+			    uid.setProfile(authData.github.profileImageURL);
+			    uid.setName(authData.github.displayName);
+
 			    var usersFirebase = ref.child("users");
 			    var userExists = false;
 			    for (var key in usersFirebase) {
@@ -48,6 +51,8 @@ define(function(require) {
 			});
 		} else {
 			uid.setUid(authData.uid);
+			uid.setProfile(authData.github.profileImageURL);
+			uid.setName(authData.github.displayName);
 			window.location.assign("home.html");
 		}
 
