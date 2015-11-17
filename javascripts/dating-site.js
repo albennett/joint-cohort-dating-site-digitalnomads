@@ -27,9 +27,9 @@ require(
       named `potential-mates.js`, and `add-favorite.js`.
      */
 
-     $(".favorites").on("click", function() {
+     $(".favorites").ready(function() {
       fav();
-     })
+     });
     
   }
 );
