@@ -7,16 +7,6 @@ define(function(require) {
 //to login and then invoke the GitHub login popup
 	  var ref = new Firebase("https://digitalnomads.firebaseio.com/");
 
-	  function getLogIn() {
-	  	var user = $('#nameInput').val();
-		var text = $('#messageInput').val();
-
-		var namepassword = {
-			email: user,
-			password: text
-		};
-	  }
-
 //github authentication
 	$("#github-image").on("click", function(){
 		console.log("doingsomething");
@@ -33,14 +23,29 @@ define(function(require) {
 
 			    var usersFirebase = ref.child("users");
 			    var userExists = false;
-			    for (var key in usersFirebase) {
-			    	if (usersFirebase[key].uid === authData.uid) {
-			    		userExists = true;
-			    		break;
+			    console.log("usersFirebase", usersFirebase);
+//real time api
+			    usersFirebase.on("value", function(snapshot){
+			    	var allUsersObject = snapshot.val();
+			    	for (var key in allUsersObject) {
+				    	console.log(allUsersObject[key].uid);
+				    	if (allUsersObject[key].uid === authData.uid) {
+				    		console.log("firing?");
+				    		userExists = true;
+				    		break;
+				    	}
 			    	}
-			    }
+
+			    console.log("allUsersObject", allUsersObject);
+			    });
+
 			    if (userExists === false) {
-			    	usersFirebase.push({uid:authData.uid});
+			    	usersFirebase.push({
+			    		uid: authData.uid,
+			    		image: authData.github.profileImageURL,
+			    		displayName: authData.github.displayName
+			    		// bio: bio
+			    	});
 			    }
 			    window.location.assign("home.html");
 			  }
@@ -58,44 +63,11 @@ define(function(require) {
 
 
     });
-//signup login
-    	$("#signup-login").on("click", function(){
-    	console.log("doingsomething");
-		var authData = ref.getAuth();
-    	  
-    	  getLogIn();
-          
-			ref.createUser(
-				namepassword, 
-				function(error, userData) {
-				  if (error) {
-				    console.log("Error creating user:", error);
-				  } else {
-				    console.log("Successfully created user account with uid:", userData.uid);
-				  }
-				
-				});
-		   });
 
 
-	//log in
-		$("#login-button").on("click", function(){
 
-			getLogIn();
 
-			ref.authWithPassword(
-			  namepassword,
-			 function(error, authData) {
-			  if (error) {
-			    console.log("Login Failed!", error);
-			  } else {
-			    console.log("Authenticated successfully with payload:", authData);
-			    uid.setUid(authData.uid);
-			    window.location.assign("home.html");
-			  }
 
-			});
-		});
 
 
   });
