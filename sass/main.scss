@@ -4,5 +4,36 @@ body {
 
 h1 {
   text-align: center;
-  color: purple;
+  color: #f7736a;
+}
+
+#github-image {
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 150px;
+	width: 450px;
+	background-image: url("http://aaronr.github.io/foss4g-2014/smalltown/images/github-logo.png");
+}
+
+#global-image {
+	height: 450px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-image: url("https://s-media-cache-ak0.pinimg.com/736x/b2/fc/9c/b2fc9c4229dcda0ac1729af5b3905526.jpg");
+	width: 100%;
+	text-align: center;
+	font-size: 100px;
+	color: teal;
+	font-family: 'Special Elite', cursive;
+
+}
+
+#text-nomad {
+	color: white;
+	background-color:rgba(255,0,0,0.5);
+
+}
+
+#signup-login, #login-button {
+	background-color: teal;
 }
