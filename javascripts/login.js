@@ -18,9 +18,6 @@ define(function(require) {
 			  } else {
 			    console.log("Authenticated successfully with payload:", authData);
 			    uid.setUid(authData.uid);
-			    uid.setProfile(authData.github.profileImageURL);
-			    uid.setName(authData.github.displayName);
-
 			    var usersFirebase = ref.child("users");
 			    var userExists = false;
 			    usersFirebase.once("value", function(dataSnapshot) {
@@ -30,7 +27,11 @@ define(function(require) {
 				    	}
 			    	});
 				    if (userExists === false) {
-				    	usersFirebase.push({uid:authData.uid});
+				    	usersFirebase.push({
+				    		uid: authData.uid,
+				    		image: authData.github.profileImageURL,
+				    		displayName: authData.github.displayName
+				    	});
 				    }
 				    window.location.assign("home.html");
 			    });
@@ -41,8 +42,6 @@ define(function(require) {
 			});
 		} else {
 			uid.setUid(authData.uid);
-			uid.setProfile(authData.github.profileImageURL);
-			uid.setName(authData.github.displayName);
 			window.location.assign("home.html");
 		}
   });

@@ -14,17 +14,20 @@ require.config({
 });
 
 require(
-  ["dependencies", "login"], 
-  function(_$_, login) {
-
-    /*
-      You can choose to use the REST methods to interact with
-      Firebase, or you can use the Firebase API with event
-      listeners. It's completely up to each team.
-
-      If you choose the former, I created two boilerplate modules
-      named `potential-mates.js`, and `add-favorite.js`.
-     */
-    
+["dependencies", "login", "hbs!../templates/candidates"], 
+function(_$_, login, template) {
+  var ref = new Firebase("https://digitalnomads.firebaseio.com/");
+  if (window.location.pathname === "/home.html") {
+    var authData = ref.getAuth();
+    var usersFirebase = ref.child("users");
+    usersFirebase.once("value", function(dataSnapshot) {
+        dataSnapshot.forEach(function(childSnapshot) {
+          var user = childSnapshot.val();
+          if (user.uid === authData.uid) {
+            $("#content").html(template(user));
+          }
+        });
+      });
+    }
   }
 );
