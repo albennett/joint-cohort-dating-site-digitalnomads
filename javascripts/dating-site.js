@@ -18,25 +18,34 @@ require(
   function(_$_, login, nomadTemplate) {
 
 // nomad sites are working
+      var ref = new Firebase("https://digitalnomads.firebaseio.com/");
+      var users = ref.child("users");
 
     $("#nomads-site").on("click", function(){
       console.log("working");
+      // var usersFirebase = ref.child.("users");
+      users.on("value", function(snapshot) {
 
-    var ref = new Firebase("https://digitalnomads.firebaseio.com/");
-   
-    // var usersFirebase = ref.child.("users");
-    var users = ref.child("users");
-    users.on("value", function(snapshot) {
-
-      var users = snapshot.val();
-           var usersArray = [];
-            for (var key in users) {
-               usersArray[usersArray.length] = users[key];
-            }  console.log("array", usersArray);
-            
-
-      // console.log("dataSnapshot.val()", dataSnapshot.val());
-       $("#content").html(nomadTemplate(usersArray));
-});
+        var users = snapshot.val();
+             var usersArray = [];
+              for (var key in users) {
+                 usersArray[usersArray.length] = users[key];
+              }  console.log("array", usersArray);
+        // console.log("dataSnapshot.val()", dataSnapshot.val());
+         $("#content").html(nomadTemplate(usersArray));
+      });
     });
+
+    $("#content").on("click", ".nomadclass", function() {
+      users.once("value", function(dataSnapshot) {
+        dataSnapshot.forEach(function(childSnapshot) {
+          var user = childSnapshot.val();
+          if (user.uid === $(this).find("h3").attr("id")) {
+            $("#content").html(template(user));
+          }
+        });
+      });
+    });
+
+
   });
