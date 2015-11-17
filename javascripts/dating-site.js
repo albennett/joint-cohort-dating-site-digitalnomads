@@ -14,8 +14,28 @@ require.config({
 });
 
 require(
-  ["dependencies", "login"], 
-  function(_$_, login) {
+  ["dependencies", "login", "profileInputFields"], 
+  function(_$_, login, profileInputFields) {
+    if (window.location.pathname === "/home.html") {
+      profileInputFields.profileInputDisplay();
+    }
+
+  var ref = new Firebase("https://digitalnomads.firebaseio.com/");
+var authData = ref.getAuth();
+if (authData) {
+  console.log("Authenticated user with uid:", authData.uid);
+}
+
+    
+$('#content').on('click','.submit',function(){
+   console.log('test some special magick');
+        var bio = $(".bio").val();
+        var destination = $(".destination").val();
+        console.log("bio" + bio);
+});    
+
+
+     
 
     /*
       You can choose to use the REST methods to interact with

@@ -2,10 +2,11 @@ define(function(require) {
   var firebase = require("firebase");
   var $ = require("jquery");
   var uid = require("uid");
+  var profileInputFields = require("profileInputFields");
   
 //If your user does not have an existing session, you can prompt the user 
 //to login and then invoke the GitHub login popup
-	  var ref = new Firebase("https://digitalnomads.firebaseio.com/");
+	var ref = new Firebase("https://digitalnomads.firebaseio.com/");
 	$("#github-image").on("click", function(){
 		console.log("doingsomething");
 		var authData = ref.getAuth();
@@ -29,6 +30,7 @@ define(function(require) {
 			    	usersFirebase.push({uid:authData.uid});
 			    }
 			    window.location.assign("home.html");
+			    // profileInputFields.profileInputDisplay();
 			  }
 			},
 			  { //session will expire upon browser shutdown
@@ -38,25 +40,26 @@ define(function(require) {
 		} else {
 			uid.setUid(authData.uid);
 			window.location.assign("home.html");
+			profileInputFields.profileInputDisplay();
+			console.log("hey");
 		}
-
-
     });
-//signup login
+
+	//signup login
     	$("#signup-login").on("click", function(){
     	console.log("doingsomething");
 		var authData = ref.getAuth();
     	  
-    	  var user = $('#nameInput').val();
-          var text = $('#messageInput').val();
-          
-          var namepassword = {
-          	email: user,
-          	password: text
-          };
-          
+		  var user = $('#nameInput').val();
+	      var text = $('#messageInput').val();
+	      
+	      var namepassword = {
+	      	email: user,
+	      	password: text
+	      };
+	      
 
-          $('#messageInput').val('');
+	      $('#messageInput').val('');
 			ref.createUser(
 				namepassword, function(error, userData) {
 			  if (error) {
@@ -69,9 +72,9 @@ define(function(require) {
 		   });
 
 
-	//log in
+		//log in
 		$("#login-button").on("click", function(){
-
+			console.log("I just clicked the login button!");
 
 			var user = $('#nameInput').val();
 			var text = $('#messageInput').val();
@@ -90,6 +93,7 @@ define(function(require) {
 			    console.log("Authenticated successfully with payload:", authData);
 			    uid.setUid(authData.uid);
 			    window.location.assign("home.html");
+			    console.log("Welcome to the jungle!");
 			  }
 
 			});
