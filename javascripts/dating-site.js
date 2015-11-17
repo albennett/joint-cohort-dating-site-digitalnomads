@@ -14,17 +14,29 @@ require.config({
 });
 
 require(
-  ["dependencies", "login"], 
-  function(_$_, login) {
+  ["dependencies", "login", 'hbs!../templates/nomads'], 
+  function(_$_, login, nomadTemplate) {
 
-    /*
-      You can choose to use the REST methods to interact with
-      Firebase, or you can use the Firebase API with event
-      listeners. It's completely up to each team.
+// nomad sites are working
 
-      If you choose the former, I created two boilerplate modules
-      named `potential-mates.js`, and `add-favorite.js`.
-     */
-    
-  }
-);
+    $("#nomads-site").on("click", function(){
+      console.log("working");
+
+    var ref = new Firebase("https://digitalnomads.firebaseio.com/");
+   
+    // var usersFirebase = ref.child.("users");
+    var users = ref.child("users");
+    users.on("value", function(snapshot) {
+
+      var users = snapshot.val();
+           var usersArray = [];
+            for (var key in users) {
+               usersArray[usersArray.length] = users[key];
+            }  console.log("array", usersArray);
+            
+
+      // console.log("dataSnapshot.val()", dataSnapshot.val());
+       $("#content").html(nomadTemplate(usersArray));
+});
+    });
+  });

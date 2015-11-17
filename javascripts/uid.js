@@ -9,23 +9,8 @@ define(function(require) {
     },
     setUid: function(newId) {
       uid = newId;
-    },
+    }
 
-    getProfile: function() {
-		return profileImageURL;
-	},
-
-	setProfile: function(newProfile) {
-		profileImageUrl = newProfile;
-	},
-
-	getName: function() {
-		return displayName;
-	},
-
-	setName: function(newName) {
-		displayName = newName;
-	}
 
   };
 });

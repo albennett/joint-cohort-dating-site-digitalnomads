@@ -6,6 +6,7 @@ h1 {
   color: #f7736a; }
 
 #github-image {
+  text-align: center;
   background-size: cover;
   background-repeat: no-repeat;
   height: 150px;
@@ -26,9 +27,6 @@ h1 {
 #text-nomad {
   color: white;
   background-color: rgba(255, 0, 0, 0.5); }
-
-#signup-login, #login-button {
-  background-color: teal; }
 
 nav {
   background-color: teal; }
