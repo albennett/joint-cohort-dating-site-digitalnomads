@@ -20,7 +20,7 @@ function(_$_, login, nomadTemplate, template, fav, profileInputFields) {
 
     
 $('#content').on('click','.submit',function(){
-   console.log('test some special magick');
+   console.log('test some special magic');
         var bio = $(".bio").val();
         var destination = $(".destination").val();
         console.log("bio" + bio);

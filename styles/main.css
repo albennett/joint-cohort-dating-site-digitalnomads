@@ -3,7 +3,7 @@ body {
 
 h1 {
   text-align: center;
-  color: purple; }
+  color: teal; }
 
 .fav_photo {
   width: 100px;
@@ -36,11 +36,11 @@ nav {
   background-color: teal; }
 
 .submit {
-  background-color: purple;
-  color: white; }
+  background-color: white;
+  color: black; }
 
 .bio, .destination {
-  background-color: purple;
-  color: white; }
+  background-color: white;
+  color: black; }
 
 /*# sourceMappingURL=main.css.map */
