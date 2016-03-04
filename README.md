@@ -1,7 +1,7 @@
 # Joint Cohort Group Project
 
 ## Description
-You mission is to create a browser-based dating application! This dating application should be specifically geared towards a specific niche of people. Now that the current front-end cohort has gained enough skills and practice to build a SPA with modern technologies, the previous cohort can join forces with them and help guide them to make something more complex.
+Your mission is to create a browser-based dating application! This dating application should be specifically geared towards a specific niche of people. Now that the current front-end cohort has gained enough skills and practice to build a SPA with modern technologies, the previous cohort can join forces with them and help guide them to make something more complex.
 
 This is also an opportunity for the previous cohort to brush up on their front-end development skills to ensure they are prepared for their final capstone.
 
